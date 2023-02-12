@@ -31,7 +31,6 @@ module.exports = {
       'title-medium': ['60px', 1.4],
       'title-small': ['48px', 1.4],
       'title-small-alt': ['32px', 1.4],
-      'title-small-alt': ['32px', 1.4],
       'body-large': ['24px', 1.4],
       body: ['16px', 1.4],
       'body-small': ['13px', 1.4],

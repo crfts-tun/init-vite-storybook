@@ -1,6 +1,3 @@
-/** style */
-/** lib */
-/** hooks */
 /** component */
 import Icon from './index'
 

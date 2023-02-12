@@ -1,5 +1,5 @@
 type Variants = 'primary' | 'secondary' | 'outline'
-type Sizes = 'ex-small' | 'small' | 'medium' | 'large' | 'ex-large'
+type Sizes =  'small' | 'medium' | 'large'
 
 export type {
   Sizes,

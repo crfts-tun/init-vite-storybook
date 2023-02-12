@@ -15,37 +15,60 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref): JSX.Element => {
     const {
+      type,
       iconPosition,
       children,
-      type,
       sizes = 'medium',
       variants,
+      disabled,
+      onClick,
       ...restProps
     } = props
 
     const ButtonSizes: { [key in Sizes]: string } = {
-      'ex-small': '',
       small: '',
       medium: '',
       large: '',
-      'ex-large': '',
     }
 
     const ButtonVariants: { [key in Variants]: string } = {
+      primary: 'bg-green-500 text-light-100',
+      secondary: '',
       outline: '',
+    }
+
+    const ButtonHoverVariants: { [key in Variants]: string } = {
       primary: '',
       secondary: '',
+      outline: '',
+    }
+
+    const ButtonActiveVariants: { [key in Variants]: string } = {
+      primary: '',
+      secondary: '',
+      outline: '',
+    }
+
+    const ButtonDisabledVariants: { [key in Variants]: string } = {
+      primary: '',
+      secondary: '',
+      outline: '',
     }
 
     return (
       <button
         ref={ref}
         type={type}
-        {...restProps}
+        onClick={onClick}
         className={classNames(
-          ButtonVariants[variants],
+          'text-green-500',
           ButtonSizes[sizes],
+          ButtonVariants[variants],
+          ButtonHoverVariants[variants],
+          ButtonActiveVariants[variants],
+          ButtonDisabledVariants[variants],
         )}
+        {...restProps}
       >
         {children}
       </button>
