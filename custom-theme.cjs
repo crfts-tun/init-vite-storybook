@@ -23,7 +23,7 @@ module.exports = {
       500: '10px',
     },
     fontFamily: {
-      'vespa-thai': ['Vespiario Thai', 'system-ui', 'sans-serif']
+      'vespa-thai': ['Vespiario Thai', 'Vespiario Condensed Italic', 'system-ui', 'sans-serif']
     },
     fontSize: {
       /** name: [fontSize, lineHeight] */
@@ -35,6 +35,12 @@ module.exports = {
       body: ['16px', 1.4],
       'body-small': ['13px', 1.4],
       caption: ['11px', 1.4],
+    },
+    fontWeight: {
+      light: '300',
+      normal: '400',
+      'semi-bold': '600',
+      bold: '700',
     },
     spacing: {
       0: '0',
@@ -142,6 +148,26 @@ module.exports = {
         800: 'rgba(255, 255, 255, 0.8)',
         900: 'rgba(255, 255, 255, 0.9)',
       },
+    },
+    animation: {
+      overlayShow: 'overlayShow 0.25s ease-in-out',
+      contentShow: 'contentShow 0.25s ease-in-out',
+    },
+    keyframes: {
+      overlayShow: {
+        from: { opacity: 0 },
+        to: { opacity: 1 }
+      },
+      contentShow: {
+        from: {
+          opacity: 0,
+          transform: 'translate(-50%, -48%) scale(0.96)'
+        },
+        to: {
+          opacity: 1,
+          transform: 'translate(-50%, -50%) scale(1)'
+        }
+      }
     }
   }
 }

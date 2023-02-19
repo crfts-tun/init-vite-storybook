@@ -2,57 +2,105 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react'
 import classNames from 'classnames'
 
-/** type */
-import { Variants, Sizes } from '@type/button'
+/** components */
+import Icon, { IconType } from '../Icon'
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  iconPosition?: 'left' | 'right'
-  sizes: Sizes
-  variants: Variants
-  rounded: boolean
+/** types */
+export type ButtonVariantType = 'primary' | 'secondary' | 'outline'
+export type ButtonSizeType = 'small' | 'medium' | 'large'
+
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  iconLeft?: IconType
+  iconRight?: IconType
+  sizes?: ButtonSizeType
+  variants: ButtonVariantType
+  onlyIcon?: boolean
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref): JSX.Element => {
     const {
-      type,
-      iconPosition,
+      type = 'button',
+      className,
       children,
+      variants = 'primary',
+      iconLeft,
+      iconRight,
+      disabled = false,
       sizes = 'medium',
-      variants,
-      disabled,
+      onlyIcon = false,
       onClick,
       ...restProps
     } = props
 
-    const ButtonSizes: { [key in Sizes]: string } = {
-      small: '',
-      medium: '',
-      large: '',
+    const ButtonSizesClasses: { [key in ButtonSizeType]: string } = {
+      small: onlyIcon
+        ? 'min-h-[32px]'
+        : 'min-h-[32px] font-normal italic text-body-small',
+      medium: onlyIcon
+        ? 'min-h-[32px]'
+        : 'min-h-[40px] font-normal italic text-body',
+      large: onlyIcon
+        ? 'min-h-[32px]'
+        : 'min-h-[40px] font-bold not-italic text-body',
     }
 
-    const ButtonVariants: { [key in Variants]: string } = {
+    const ButtonVariantsClasses: {
+      [key in ButtonVariantType]: string
+    } = {
       primary: 'bg-green-500 text-light-100',
-      secondary: '',
-      outline: '',
+      secondary: 'bg-light-100 text-green-500',
+      outline: 'bg-light-100 text-light-900',
     }
 
-    const ButtonHoverVariants: { [key in Variants]: string } = {
-      primary: '',
-      secondary: '',
-      outline: '',
+    const ButtonHoverVariantsClasses: {
+      [key in ButtonVariantType]: string
+    } = {
+      primary:
+        '[&:not(:disabled)]:hover:bg-green-600 hover:text-light-100',
+      secondary: '[&:not(:disabled)]:hover:bg-light-200',
+      outline: '[&:not(:disabled)]:hover:bg-light-200',
     }
 
-    const ButtonActiveVariants: { [key in Variants]: string } = {
-      primary: '',
-      secondary: '',
-      outline: '',
+    const ButtonActiveVariantsClasses: {
+      [key in ButtonVariantType]: string
+    } = {
+      primary:
+        '[&:not(:disabled)]:active:bg-green-700 [&:not(:disabled)]:active:text-light-100',
+      secondary: '[&:not(:disabled)]:active:bg-light-200',
+      outline: '[&:not(:disabled)]:active:bg-light-200',
     }
 
-    const ButtonDisabledVariants: { [key in Variants]: string } = {
-      primary: '',
-      secondary: '',
-      outline: '',
+    const ButtonDisabledVariantsClasses: {
+      [key in ButtonVariantType]: string
+    } = {
+      primary: 'disabled:text-green-700',
+      secondary: 'disabled:text-light-200',
+      outline: 'disabled:text-light-200',
+    }
+
+    const IconVariantsClasses: {
+      [key in ButtonVariantType]: string
+    } = {
+      primary: 'bg-light-100',
+      secondary: 'bg-green-500',
+      outline: 'bg-light-900',
+    }
+
+    const IconDisabledVariantsClasses: {
+      [key in ButtonVariantType]: string
+    } = {
+      primary: disabled ? 'bg-green-700' : '',
+      secondary: disabled ? 'bg-light-200' : '',
+      outline: disabled ? 'bg-light-200' : '',
+    }
+
+    const TextDisabledVariantsClasses: {
+      [key in ButtonVariantType]: string
+    } = {
+      primary: disabled ? 'text-green-700' : '',
+      secondary: disabled ? 'text-light-200' : '',
+      outline: disabled ? 'text-light-200' : '',
     }
 
     return (
@@ -60,17 +108,38 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         onClick={onClick}
+        disabled={disabled}
         className={classNames(
-          'text-green-500',
-          ButtonSizes[sizes],
-          ButtonVariants[variants],
-          ButtonHoverVariants[variants],
-          ButtonActiveVariants[variants],
-          ButtonDisabledVariants[variants],
+          'flex items-center justify-center gap-4',
+          ButtonSizesClasses[sizes],
+          ButtonVariantsClasses[variants],
+          ButtonHoverVariantsClasses[variants],
+          ButtonActiveVariantsClasses[variants],
+          ButtonDisabledVariantsClasses[variants],
+          onlyIcon ? 'rounded-full p-8' : 'rounded py-4 px-16',
+          className,
         )}
         {...restProps}
       >
+        {iconLeft ? (
+          <Icon
+            icon={iconLeft}
+            className={classNames(
+              IconVariantsClasses[variants],
+              IconDisabledVariantsClasses[variants],
+            )}
+          />
+        ) : null}
         {children}
+        {iconRight ? (
+          <Icon
+            icon={iconRight}
+            className={classNames(
+              IconVariantsClasses[variants],
+              IconDisabledVariantsClasses[variants],
+            )}
+          />
+        ) : null}
       </button>
     )
   },

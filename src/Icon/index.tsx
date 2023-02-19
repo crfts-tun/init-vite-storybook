@@ -3,10 +3,72 @@ import React, { forwardRef, HTMLAttributes } from 'react'
 import classNames from 'classnames'
 
 /** constance */
-import { iconList, iconSizes, iconColors } from '@const/icons'
+export const iconLists = [
+  'null-1',
+  'null-2',
+  'arrowhead-top',
+  'arrowhead-left',
+  'arrowhead-right',
+  'arrowhead-bottom',
+  'arrowhead-sm-top',
+  'arrowhead-sm-left',
+  'arrowhead-sm-right',
+  'arrowhead-sm-bottom',
+  'round-arrow-top',
+  'round-arrow-left',
+  'round-arrow-right',
+  'round-arrow-bottom',
+  'round-solid-arrow-top',
+  'round-solid-arrow-left',
+  'round-solid-arrow-right',
+  'round-solid-arrow-bottom',
+  'bar',
+  'bar-1',
+  'bar-2',
+  'double-bar',
+  'bow-tie',
+  'play',
+  'stop',
+  'pause',
+  'first',
+  'last',
+  'globe',
+  'tako',
+  'kebab',
+  'cheese',
+  'veggie',
+  'meatball',
+  'hamburger',
+  'vespa',
+] as const
+
+export const iconColors = [
+  'blue',
+  'green',
+  'light-green',
+  'yellow',
+  'dark',
+  'light',
+  'shade-dark',
+  'shade-light',
+] as const
+
+export const iconSizes = [
+  '12',
+  '16',
+  '20',
+  '24',
+  '32',
+  '40',
+  '48',
+  '56',
+  '60',
+  '72',
+  '80',
+] as const
 
 /** type */
-export type IconType = typeof iconList[number]
+export type IconType = typeof iconLists[number]
 export type IconSizeType = typeof iconSizes[number]
 export type IconColorType = typeof iconColors[number]
 
@@ -19,10 +81,10 @@ type IconProps = HTMLAttributes<HTMLSpanElement> & {
 const Icon = forwardRef<HTMLSpanElement, IconProps>(
   (props, ref): JSX.Element => {
     const {
-      className,
-      icon,
       size = '16',
-      color = 'blue',
+      icon = 'null-1',
+      color,
+      className,
       ...restProps
     } = props
 
@@ -33,6 +95,11 @@ const Icon = forwardRef<HTMLSpanElement, IconProps>(
       '24': 'w-[24px] h-[24px]',
       '32': 'w-[32px] h-[32px]',
       '40': 'w-[40px] h-[40px]',
+      '48': 'w-[48px] h-[48px]',
+      '56': 'w-[56px] h-[56px]',
+      '60': 'w-[60px] h-[60px]',
+      '72': 'w-[72px] h-[72px]',
+      '80': 'w-[80px] h-[80px]',
     }
 
     const iconColorClasses: { [key in IconColorType]: string } = {
@@ -50,14 +117,16 @@ const Icon = forwardRef<HTMLSpanElement, IconProps>(
       <span
         ref={ref}
         className={classNames(
-          'block',
-          iconColorClasses[color],
-          sizeClasses[size],
           className,
+          'inline-block',
+          iconColorClasses[color!],
+          sizeClasses[size],
         )}
         style={{
           WebkitMaskImage: icon ? `var(--icon-${icon})` : 'none',
+          WebkitMaskSize: 'cover',
           maskImage: icon ? `var(--icon-${icon})` : 'none',
+          maskSize: 'cover',
         }}
         {...restProps}
       />

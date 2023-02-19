@@ -1,14 +1,9 @@
 /** component */
-import Typo from './index'
-import {
-  textSizes,
-  textStyles,
-  textWeights,
-} from '../../constance/typo'
+import Typo from '.'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 export default {
-  title: '',
+  title: 'Component/Typo',
   component: Typo,
 } as ComponentMeta<typeof Typo>
 
@@ -22,19 +17,4 @@ SingleTypo.args = {
   size: 'body',
   textStyle: 'normal',
   weight: 'normal',
-}
-
-SingleTypo.argTypes = {
-  size: {
-    control: { type: 'select' },
-    options: textSizes,
-  },
-  textStyle: {
-    control: { type: 'select' },
-    options: textStyles,
-  },
-  weight: {
-    control: { type: 'select' },
-    options: textWeights,
-  },
 }

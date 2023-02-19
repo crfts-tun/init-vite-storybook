@@ -1,17 +1,27 @@
 import React, { forwardRef, HTMLAttributes } from 'react'
 
-import {
-  htmlTags,
-  textSizes,
-  textStyles,
-  textWeights,
-} from '@const/typo'
 import classNames from 'classnames'
 
-export type HTMLTagType = typeof htmlTags[number]
-export type TextSizeType = typeof textSizes[number]
-export type TextStyleType = typeof textStyles[number]
-export type TextWeightType = typeof textWeights[number]
+export type HTMLTagType =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'p'
+  | 'span'
+export type TextSizeType =
+  | 'title-large'
+  | 'title-medium'
+  | 'title-small'
+  | 'title-small-alt'
+  | 'body-large'
+  | 'body'
+  | 'body-small'
+  | 'caption'
+export type TextStyleType = 'italic' | 'normal'
+export type TextWeightType = 'bold' | 'normal'
 
 type TypoProps = HTMLAttributes<
   HTMLHeadingElement & HTMLParagraphElement & HTMLSpanElement
@@ -69,6 +79,7 @@ const Typo = forwardRef<TypoForwardRefType, TypoProps>(
       <TagName
         ref={ref}
         className={classNames(
+          as === 'span' ? 'inline-block' : 'block',
           fontSizeClasses[size],
           fontWeightClasses[weight],
           fontStyleClasses[textStyle],
