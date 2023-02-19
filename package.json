@@ -23,7 +23,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "rm -rf dist && tsc && vite build && tailwindcss build -i ./src/style.css -o ./dist/style.css",
+    "build": "rm -rf dist && tsc && vite build && tailwindcss build -i ./src/style.css -o ./dist/style.css --minify",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
