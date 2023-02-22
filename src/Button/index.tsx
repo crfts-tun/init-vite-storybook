@@ -1,21 +1,34 @@
 /** lib */
-import { ButtonHTMLAttributes, forwardRef } from 'react'
+import { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react'
 import classNames from 'classnames'
 
 /** components */
 import Icon, { IconType } from '../Icon'
 
-/** types */
-export type ButtonVariantType = 'primary' | 'secondary' | 'outline'
-export type ButtonSizeType = 'small' | 'medium' | 'large'
+/** constance */
+export const ButtonVariantList = ['primary', 'secondary', 'outline']
+export const ButtonSizeList = ['small', 'medium', 'large']
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  iconLeft?: IconType
-  iconRight?: IconType
+/** types */
+export type ButtonVariantType = typeof ButtonVariantList[number]
+export type ButtonSizeType = typeof ButtonSizeList[number]
+
+type CommonButtonType = ButtonHTMLAttributes<HTMLButtonElement> & {
   sizes?: ButtonSizeType
   variants: ButtonVariantType
-  onlyIcon?: boolean
+  iconLeft?: IconType
 }
+type ConditionButtonIconType =
+  | {
+      onlyIcon?: never
+      iconRight?: IconType
+    }
+  | {
+      onlyIcon?: boolean
+      iconRight?: never
+    }
+
+export type ButtonProps = CommonButtonType & ConditionButtonIconType
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref): JSX.Element => {

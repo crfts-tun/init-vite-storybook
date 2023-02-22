@@ -37,17 +37,18 @@ type TypoForwardRefType = HTMLHeadingElement &
   HTMLSpanElement
 
 const Typo = forwardRef<TypoForwardRefType, TypoProps>(
-  (
-    {
-      as,
+  (props, ref) => {
+    /** destructuring */
+    const {
+      as = 'p',
       size = 'body',
       weight = 'normal',
       textStyle = 'normal',
       className,
+      children,
       ...restProps
-    },
-    ref,
-  ) => {
+    } = props
+
     /** change font size */
     const fontSizeClasses: { [key in TextSizeType]: string } = {
       'title-large': 'title-large',
@@ -87,7 +88,7 @@ const Typo = forwardRef<TypoForwardRefType, TypoProps>(
         )}
         {...restProps}
       >
-        Typo
+        {children}
       </TagName>
     )
   },

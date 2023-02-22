@@ -3,7 +3,7 @@ import React, { forwardRef, HTMLAttributes } from 'react'
 import classNames from 'classnames'
 
 /** constance */
-export const iconLists = [
+export const IconLists = [
   'null-1',
   'null-2',
   'arrowhead-top',
@@ -42,7 +42,7 @@ export const iconLists = [
   'vespa',
 ] as const
 
-export const iconColors = [
+export const IconColors = [
   'blue',
   'green',
   'light-green',
@@ -53,7 +53,7 @@ export const iconColors = [
   'shade-light',
 ] as const
 
-export const iconSizes = [
+export const IconSizes = [
   '12',
   '16',
   '20',
@@ -68,9 +68,9 @@ export const iconSizes = [
 ] as const
 
 /** type */
-export type IconType = typeof iconLists[number]
-export type IconSizeType = typeof iconSizes[number]
-export type IconColorType = typeof iconColors[number]
+export type IconType = typeof IconLists[number]
+export type IconSizeType = typeof IconSizes[number]
+export type IconColorType = typeof IconColors[number]
 
 type IconProps = HTMLAttributes<HTMLSpanElement> & {
   icon: IconType

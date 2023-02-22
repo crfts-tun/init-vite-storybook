@@ -1,19 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import Dialog from './index'
-import * as RadixDialog from '@radix-ui/react-dialog'
+import Button from '../Button'
 
 export default {
-  title: '',
+  title: 'Utilities/Dialog',
   component: Dialog,
 } as ComponentMeta<typeof Dialog>
 
-const Template: ComponentStory<typeof Dialog> = (args) => (
-  <Dialog {...args}></Dialog>
-)
+const InternalStateTemplate: ComponentStory<typeof Dialog> = (
+  args,
+) => {
+  return (
+    <Dialog {...args}>
+      <Dialog.Trigger asChild>
+        <Button variants="primary">Internal state</Button>
+      </Dialog.Trigger>
+      <Dialog.Content>
+        <Dialog.Confirm asChild>Confirm</Dialog.Confirm>
+      </Dialog.Content>
+    </Dialog>
+  )
+}
 
-export const Default = Template.bind({})
+const ExternalStateTemplate: ComponentStory<typeof Dialog> = (
+  args,
+) => {
+  // state
+  const [dialog, setDialog] = useState<boolean>(false)
 
-const commonArgs = {}
+  return (
+    <>
+      <Button variants="primary" onClick={() => setDialog(true)}>
+        External state
+      </Button>
+      <Dialog {...args} open={dialog} onOpenChange={setDialog}>
+        <Dialog.Content>
+          <Dialog.Confirm asChild>Confirm</Dialog.Confirm>
+        </Dialog.Content>
+      </Dialog>
+    </>
+  )
+}
 
-Default.args = commonArgs
+export const InternalState = InternalStateTemplate.bind({})
+export const ExternalState = ExternalStateTemplate.bind({})
