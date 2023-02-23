@@ -40,6 +40,7 @@ export const IconLists = [
   'meatball',
   'hamburger',
   'vespa',
+  'check',
 ] as const
 
 export const IconColors = [
@@ -72,18 +73,18 @@ export type IconType = typeof IconLists[number]
 export type IconSizeType = typeof IconSizes[number]
 export type IconColorType = typeof IconColors[number]
 
-type IconProps = HTMLAttributes<HTMLSpanElement> & {
+type IconProps = HTMLAttributes<HTMLDivElement> & {
   icon: IconType
   size?: IconSizeType
   color?: IconColorType
 }
 
-const Icon = forwardRef<HTMLSpanElement, IconProps>(
+const Icon = forwardRef<HTMLDivElement, IconProps>(
   (props, ref): JSX.Element => {
     const {
       size = '16',
       icon = 'null-1',
-      color,
+      color = 'blue',
       className,
       ...restProps
     } = props
@@ -114,22 +115,28 @@ const Icon = forwardRef<HTMLSpanElement, IconProps>(
     }
 
     return (
-      <span
+      <div
         ref={ref}
         className={classNames(
+          'text-[0px]',
           className,
-          'inline-block',
-          iconColorClasses[color!],
           sizeClasses[size],
         )}
-        style={{
-          WebkitMaskImage: icon ? `var(--icon-${icon})` : 'none',
-          WebkitMaskSize: 'cover',
-          maskImage: icon ? `var(--icon-${icon})` : 'none',
-          maskSize: 'cover',
-        }}
         {...restProps}
-      />
+      >
+        <span
+          className={classNames(
+            'inline-block w-full h-full',
+            iconColorClasses[color],
+          )}
+          style={{
+            WebkitMaskImage: icon ? `var(--icon-${icon})` : 'none',
+            WebkitMaskSize: 'cover',
+            maskImage: icon ? `var(--icon-${icon})` : 'none',
+            maskSize: 'cover',
+          }}
+        />
+      </div>
     )
   },
 )

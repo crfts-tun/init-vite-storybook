@@ -7,6 +7,17 @@ import type { ComponentStory, ComponentMeta } from '@storybook/react'
 export default {
   title: 'Component/Icon',
   component: Icon,
+  argTypes: {
+    color: {
+      control: 'select',
+      defaultValue: 'blue',
+      description: 'set icon color',
+      table: {
+        category: 'Props',
+        defaultValue: { summary: 'blue' },
+      },
+    },
+  },
 } as ComponentMeta<typeof Icon>
 
 const SingleIconTemplate: ComponentStory<typeof Icon> = (
