@@ -1,11 +1,10 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import Chip from '.'
+import Chip, { ChipProps } from '.'
 
 export default {
-  title: '',
+  title: 'Component/Chip',
   component: Chip,
-  argTypes: {},
 } as ComponentMeta<typeof Chip>
 
 const Template: ComponentStory<typeof Chip> = (args) => (
@@ -14,6 +13,9 @@ const Template: ComponentStory<typeof Chip> = (args) => (
 
 export const Default = Template.bind({})
 
-const commonArgs = {}
+const commonArgs: ChipProps = {
+  children: 'NEWS',
+  variants: 'dark',
+}
 
 Default.args = commonArgs
