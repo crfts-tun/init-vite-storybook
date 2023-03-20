@@ -1,5 +1,6 @@
+/** lib */
+import { forwardRef, HTMLAttributes } from 'react'
 import classNames from 'classnames'
-import React, { forwardRef, HTMLAttributes } from 'react'
 import Typo from '../Typo'
 
 export const ChipVariants = ['light', 'dark'] as const

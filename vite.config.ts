@@ -1,26 +1,22 @@
+import dts from 'vite-plugin-dts';
+import react from '@vitejs/plugin-react'
+import tsconfigPaths from 'vite-tsconfig-paths'
 import { resolve } from 'path';
 import { defineConfig } from 'vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
-import {viteStaticCopy} from 'vite-plugin-static-copy'
-import react from '@vitejs/plugin-react'
-import dts from 'vite-plugin-dts';
+import { viteStaticCopy } from 'vite-plugin-static-copy'
+
+// https://vitejs.dev/config/
 
 const projectRoot = resolve(__dirname)
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  resolve: {
-    alias: {
-      "@": resolve(projectRoot, "src"),
-    }
-  },
   build: {
+    minify: 'esbuild',
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'VespaDesignSystem',
       fileName: 'vespa-design-system',
-      formats: ['es', 'cjs', 'umd', 'iife']
-      // fileName: (format) => `test-vespa-design-system.${format}.js`
+      formats: ['es', 'cjs', 'umd']
     },
     rollupOptions: {
       // Make sure to externalize dependencies
@@ -49,6 +45,10 @@ export default defineConfig({
         {
           src: 'custom-theme.cjs',
           dest: './'
+        },
+        {
+          src: './src/hooks',
+          dest: './hooks'
         }
       ]
     }),

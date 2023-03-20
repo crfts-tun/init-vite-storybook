@@ -1,12 +1,14 @@
 /** component */
-import Icon, { IconLists } from '.'
+import Icon from '.'
 import Stack from '../Stack'
 
 /** type */
 import type { ComponentStory, ComponentMeta } from '@storybook/react'
 
+import { IconLists } from '../../constance/Icon'
+
 export default {
-  title: 'Component/Icon',
+  title: 'Components/Icon',
   component: Stack,
   argTypes: {
     direction: {
@@ -30,9 +32,7 @@ export default {
   },
 } as ComponentMeta<typeof Stack>
 
-const StackIconsTemplate: ComponentStory<typeof Stack> = (
-  args,
-): JSX.Element => (
+const StackIconsTemplate: ComponentStory<typeof Stack> = (args): JSX.Element => (
   <Stack {...args}>
     {IconLists.map((icon) => (
       <Icon icon={icon} color="blue" />

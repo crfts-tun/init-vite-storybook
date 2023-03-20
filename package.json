@@ -1,10 +1,8 @@
 {
-  "name": "@vespa/design-system",
-  "author": {
-    "name": "Craftsmanship"
-  },
+  "name": "@vespiario-thailand/design-system",
+  "author": "Craftsmanship",
   "license": "UNLICENSED",
-  "version": "0.0.1",
+  "version": "1.2.35",
   "type": "module",
   "files": [
     "dist"
@@ -14,10 +12,15 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "rm -rf dist && tsc && vite build && tailwindcss build -i ./src/style.css -o ./dist/style.css --minify",
+    "optimize": "vite optimize",
+    "build:clean": "rimraf dist",
+    "build:tsc": "tsc",
+    "build:vite": "vite build --minify",
+    "build:css": "tailwindcss build -i ./src/style.css -o ./dist/style.css --minify",
+    "build": "npm-run-all build:clean build:vite build:tsc build:css",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "vitest"
+    "build-storybook-docs": "build-storybook --docs"
   },
   "exports": {
     ".": {
@@ -25,8 +28,9 @@
       "import": "./dist/vespa-design-system.js",
       "require": "./dist/vespa-design-system.umd.cjs"
     },
-    "./dist/custom-theme.cjs": "./dist/custom-theme.cjs",
-    "./dist/style.css": "./dist/style.css"
+    "./custom-theme.cjs": "./dist/custom-theme.cjs",
+    "./style.css": "./dist/style.css",
+    "./dist/hooks": "./dist/hooks"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.2",
@@ -39,6 +43,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
+    "@storybook/addon-a11y": "^6.5.16",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-docs": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
@@ -54,12 +59,28 @@
     "@vitejs/plugin-react": "^3.0.0",
     "autoprefixer": "^10.4.13",
     "babel-loader": "^8.3.0",
+    "cssnano": "^5.1.15",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.4",
+    "postcss-cli": "^10.1.0",
+    "rimraf": "^4.3.1",
+    "tailwindcss": "^3.2.7",
+    "terser": "^5.16.5",
     "typescript": "^4.9.5",
     "vite": "^4.1.0",
     "vite-plugin-dts": "^2.0.0-beta.0",
-    "vite-tsconfig-paths": "^4.0.5",
-    "vitest": "^0.28.5"
-  }
+    "vite-tsconfig-paths": "^4.0.5"
+  },
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crfts-tun/init-vite-storybook.git"
+  },
+  "keywords": [
+    "vespa"
+  ],
+  "bugs": {
+    "url": "https://github.com/crfts-tun/init-vite-storybook/issues"
+  },
+  "homepage": "https://github.com/crfts-tun/init-vite-storybook#readme"
 }

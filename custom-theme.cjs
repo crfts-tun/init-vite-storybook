@@ -23,7 +23,8 @@ module.exports = {
       500: '10px',
     },
     fontFamily: {
-      'vespa-thai': ['Vespiario Thai', 'Vespiario Condensed Italic', 'system-ui', 'sans-serif']
+      'vespa-thai': ['Vespiario Thai', 'system-ui', 'sans-serif'],
+      'vespa-thai-italic': ['Vespiario Condensed Italic',  'system-ui', 'sans-serif']
     },
     fontSize: {
       /** name: [fontSize, lineHeight] */

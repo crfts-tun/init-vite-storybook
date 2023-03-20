@@ -1,3 +1,6 @@
+/** libs */
+import React from 'react'
+
 /** component */
 import Button from '.'
 import Stack from '../Stack'
@@ -6,7 +9,7 @@ import Stack from '../Stack'
 import type { ComponentStory, ComponentMeta } from '@storybook/react'
 
 export default {
-  title: 'Component/Button',
+  title: 'Components/Button',
   component: Stack,
   argTypes: {
     direction: {
@@ -30,9 +33,7 @@ export default {
   },
 } as ComponentMeta<typeof Stack>
 
-const StackButtonsTemplate: ComponentStory<typeof Stack> = (
-  args,
-): JSX.Element => (
+const StackButtonsTemplate: ComponentStory<typeof Stack> = (args): JSX.Element => (
   <Stack {...args}>
     <Button variants="secondary">Cancel</Button>
     <Button variants="primary">Confirm</Button>

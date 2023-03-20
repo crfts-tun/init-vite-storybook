@@ -1,0 +1,58 @@
+const IconLists = [
+  'null-1',
+  'null-2',
+  'arrowhead-top',
+  'arrowhead-left',
+  'arrowhead-right',
+  'arrowhead-bottom',
+  'arrowhead-sm-top',
+  'arrowhead-sm-left',
+  'arrowhead-sm-right',
+  'arrowhead-sm-bottom',
+  'round-arrow-top',
+  'round-arrow-left',
+  'round-arrow-right',
+  'round-arrow-bottom',
+  'round-solid-arrow-top',
+  'round-solid-arrow-left',
+  'round-solid-arrow-right',
+  'round-solid-arrow-bottom',
+  'bar',
+  'bar-1',
+  'bar-2',
+  'double-bar',
+  'bow-tie',
+  'play',
+  'stop',
+  'pause',
+  'first',
+  'last',
+  'globe',
+  'tako',
+  'kebab',
+  'cheese',
+  'veggie',
+  'meatball',
+  'hamburger',
+  'vespa',
+  'check',
+] as const
+
+const IconColors = [
+  'blue',
+  'green',
+  'light-green',
+  'yellow',
+  'dark',
+  'light',
+  'shade-dark',
+  'shade-light',
+] as const
+
+const IconSizes = ['12', '16', '20', '24', '32', '40', '48', '56', '60', '72', '80'] as const
+
+export {
+  IconColors,
+  IconLists,
+  IconSizes,
+}

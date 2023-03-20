@@ -8,9 +8,7 @@ export default {
   component: Dialog,
 } as ComponentMeta<typeof Dialog>
 
-const InternalStateTemplate: ComponentStory<typeof Dialog> = (
-  args,
-) => {
+const InternalStateTemplate: ComponentStory<typeof Dialog> = (args) => {
   return (
     <Dialog {...args}>
       <Dialog.Trigger asChild>
@@ -23,9 +21,7 @@ const InternalStateTemplate: ComponentStory<typeof Dialog> = (
   )
 }
 
-const ExternalStateTemplate: ComponentStory<typeof Dialog> = (
-  args,
-) => {
+const ExternalStateTemplate: ComponentStory<typeof Dialog> = (args) => {
   // state
   const [dialog, setDialog] = useState<boolean>(false)
 

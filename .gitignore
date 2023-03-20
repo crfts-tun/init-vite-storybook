@@ -19,11 +19,13 @@ dist-ssr
 .pnp.js
 yarn.lock
 package-lock.json
+/storybook-static
 
 # testing
 /coverage
 
 # Editor directories and files
+.vscode
 .vscode/*
 !.vscode/extensions.json
 .idea
